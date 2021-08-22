@@ -1,0 +1,43 @@
+.continer-header-card-sorting {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 12px;
+  background-color: #e5e5e5;
+
+  p:first-child {
+    color: #929292;
+  }
+
+  .button-filter,
+  .header-form {
+    margin-left: 12px;
+  }
+
+  .button-filter,
+  .button-search {
+    color: #2f80ed;
+    cursor: pointer;
+  }
+
+  .button-filter {
+    text-decoration: underline;
+  }
+
+  .button-search {
+    border-style: none;
+    background-color: #e5e5e5;
+  }
+
+  .search-text {
+    padding: 0 0 0 0;
+    width: 150px;
+    border: none;
+
+    &:hover,
+    &:focus {
+      border: none;
+    }
+  }
+}
