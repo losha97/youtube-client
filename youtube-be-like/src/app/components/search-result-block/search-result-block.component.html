@@ -1,0 +1,5 @@
+<div *ngIf="showSearchResultBlock" class="container-main-card-list">
+  <div class="container-card-list">
+    <app-search-result-item *ngFor="let card of (cards | filterByInput)" [card]="card"></app-search-result-item>
+  </div>
+</div>

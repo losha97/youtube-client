@@ -1,0 +1,21 @@
+<div class="wrap-container-card">
+  <div appBorderBottomColor [color]="dateColor" class="container-card">
+    <app-video-thumbnail [card]="card"></app-video-thumbnail>
+    <div class="container-interaction-icons">
+      <div class="container-icons">
+        <app-views-count [card]="card"></app-views-count>
+      </div>
+      <div class="container-icons">
+        <app-likes-count [card]="card"></app-likes-count>
+      </div>
+      <div class="container-icons">
+        <app-dislikes-count [card]="card"></app-dislikes-count>
+      </div>
+      <div class="container-icons">
+        <app-comments-count [card]="card"></app-comments-count>
+      </div>
+    </div>
+    <app-video-title [card]="card"></app-video-title>
+    <app-more-button></app-more-button>
+  </div>
+</div>

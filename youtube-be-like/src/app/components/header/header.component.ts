@@ -1,25 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faSlidersH, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { Component } from '@angular/core';
+import { FilteringCriteriaBlockDisplayService } from 'src/app/services/filtering-criteria-block-display.service';
+import { SearchResultBlockDisplayService } from 'src/app/services/search-result-block-display.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  faYoutube = faYoutube;
+export class HeaderComponent {
 
-  faSlidersH = faSlidersH;
+  showFilteringCriteriaBlock!: boolean;
 
-  faUserCircle = faUserCircle;
+  showSearchResultBlock!: boolean;
 
-  userName: string = 'your name';
+  subscription: Subscription;
 
-  // constructor() { }
+  srbsubscription: Subscription;
 
-  ngOnInit(): void {
-    console.log('no empty methods');
+  constructor(private filteringCriteriaBlockDisplayService: FilteringCriteriaBlockDisplayService, private searchResultBlockDisplayService: SearchResultBlockDisplayService) {
+    this.subscription = this.filteringCriteriaBlockDisplayService.onToggle().subscribe((value) => {this.showFilteringCriteriaBlock = value;});
+    this.srbsubscription = this.searchResultBlockDisplayService.onToggle().subscribe((value) => {this.showSearchResultBlock = value;});
   }
 
+  toggleShowFilteringCriteriaBlock() {
+    this.filteringCriteriaBlockDisplayService.toggleShowCriteriaBlock();
+  }
+
+  clickSearchResultBlock() {
+    this.searchResultBlockDisplayService.toggleShowSearchResultBlock();
+  }
 }

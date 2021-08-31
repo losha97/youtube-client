@@ -1,0 +1,6 @@
+<form class="header-form" #filterForm="ngForm">
+  <div class="search-input">
+    <input type="submit" value="by word or sentance" class="button-search" />
+    <input type="text" name="text" id="text" [(ngModel)]="text" class="search-text" (keyup)="filterByText()"/>
+  </div>
+</form>
