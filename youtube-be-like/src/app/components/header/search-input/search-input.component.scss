@@ -1,0 +1,32 @@
+.header-form {
+  margin-left: 6px;
+}
+
+.search-text,
+.button-search {
+  height: 24px;
+}
+
+.button-search {
+  border-style: none;
+  padding: 2px 2px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.search-text {
+  width: 396px;
+  border-style: none;
+  background-color: #efefef;
+}
+
+input[type="text" i] {
+  padding: 2px 0px 2px 6px;
+}
+
+.button-search {
+  color: #fff;
+  background-color: #2f80ed;
+  width: 80px;
+  border-radius: 0px 4px 4px 0px;
+}
