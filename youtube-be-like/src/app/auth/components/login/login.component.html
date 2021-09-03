@@ -1,0 +1,21 @@
+<div class="container-login-form">
+  <div class="container-form">
+    <div>
+      <h3>Login</h3>
+    </div>
+    <form class="form" (ngSubmit)="onSubmit()">
+      <div class="form-control">
+        <label for="login" class="label-login">Login</label>
+        <input type="text" class="input-login" name="login" id="login" placeholder="Enter your login" [(ngModel)]="login" />
+      </div>
+      <div class="form-control">
+        <label for="password" class="label-password">Password</label>
+        <input type="password" class="input-password" name="password" id="password" placeholder="Enter your password" [(ngModel)]="password" />
+      </div>
+      <div class="form-submit">
+        <button class="registration-button">Registration</button>
+        <input type="submit" value="Login" class="submit-button">
+      </div>
+    </form>
+  </div>
+</div>
