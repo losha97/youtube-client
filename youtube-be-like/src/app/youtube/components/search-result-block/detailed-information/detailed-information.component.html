@@ -1,0 +1,35 @@
+<div class="container-detailed-information" *ngIf="card">
+  <div class="container-previous-button">
+    <div class="previous-button" (click)="goBack()">
+      <fa-icon class="icon-back" [icon]="faArrowLeft"></fa-icon>
+    </div>
+  </div>
+  <div class="container-video-and-info">
+    <div class="container-youtube-video">
+      <div class="youtube-video">
+
+      </div>
+      <div class="youtube-video-number">
+        # {{ card.id }}
+      </div>
+    </div>
+    <div class="container-information">
+      <div class="container-text-info">
+        <div class="container-title-date">
+          <div class="title">{{ card.title }}</div>
+          <div class="date">{{ card.date }}</div>
+        </div>
+        <div class="container-description">
+          <div class="description-header">Description:</div>
+          <div class="desciption-text">{{ card.description }}</div>
+        </div>
+      </div>
+      <div class="container-interaction-icons">
+        <div class="container-icons">{{ card.views }}</div>
+        <div class="container-icons">{{ card.likes }}</div>
+        <div class="container-icons">{{ card.dislikes }}</div>
+        <div class="container-icons">{{ card.clones }}</div>
+      </div>
+    </div>
+  </div>
+</div>

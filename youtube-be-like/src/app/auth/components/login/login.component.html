@@ -1,0 +1,21 @@
+<div class="container-login-form">
+  <div class="container-form">
+    <div>
+      <h3>Login</h3>
+    </div>
+    <form class="form" [formGroup]="loginForm">
+      <div class="form-control">
+        <label for="email" class="label-email">Email</label>
+        <input type="email" class="input-email" name="email" id="email" placeholder="Email" formControlName="email" />
+      </div>
+      <div class="form-control">
+        <label for="password" class="label-password">Password</label>
+        <input type="password" class="input-password" name="password" id="password" placeholder="Enter your password" formControlName="password" />
+      </div>
+      <div class="form-submit">
+        <button class="registration-button" (click)="navigateToRegistration()" >Registration</button>
+        <button class="submit-button" (click)="onSubmit()">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

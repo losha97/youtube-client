@@ -1,0 +1,17 @@
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2f80ed;
+  min-width: 24px;
+  max-width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 6px;
+
+  &:hover {
+    background-color: #006eff;
+  }
+}

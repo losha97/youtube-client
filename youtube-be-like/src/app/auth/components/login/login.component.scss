@@ -1,0 +1,85 @@
+.container-login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 40vh;
+
+  .container-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 76%;
+    width: 27%;
+    background-color: #f2f2f2;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+
+      .form-control {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 90%;
+
+        .label-email,
+        .label-password {
+          font-size: 10px;
+          line-height: 12px;
+          margin: 0 0 2px 2px;
+          color: #828282;
+        }
+
+        .input-email,
+        .input-password {
+          width: 100%;
+          background-color: #e0e0e0;
+          border: none;
+          padding: 10px 0px 10px 0px;
+        }
+      }
+
+      .form-submit {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        width: 90%;
+
+        .submit-button,
+        .registration-button {
+          cursor: pointer;
+        }
+
+        .registration-button {
+          border: none;
+          margin-right: 20px;
+          color: #2f80ed;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .submit-button {
+          border: none;
+          background-color: #2f80ed;
+          color: #fff;
+          padding: 8px 50px;
+          border-radius: 5px;
+
+          &:hover {
+            background-color: #006eff;
+          }
+        }
+      }
+    }
+  }
+}
