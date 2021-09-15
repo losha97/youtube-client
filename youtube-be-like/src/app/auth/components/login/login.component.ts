@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { UserService } from '../../services/users.service';
 
 @Component({
@@ -6,22 +9,50 @@ import { UserService } from '../../services/users.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
-  login!: string;
+  loginForm!:FormGroup;
 
-  password!: string;
+  returnUrl!: string;
 
-  constructor(private userService: UserService) {
+  error = '';
 
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
+    private userService: UserService) {
+
+    if (this.userService.currentUserValue) {
+      this.router.navigate(['/videos']);
+    }
   }
 
   ngOnInit() {
-    console.log(window.location.origin);
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/videos';
   }
+
+  get f() { return this.loginForm.controls; }
 
   onSubmit() {
-    this.userService.loginFilter(this.login, this.password).subscribe();
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.userService.login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        () => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = error;
+        });
   }
 
+  navigateToRegistration() {
+    this.router.navigate(['/registration']);
+  }
 }

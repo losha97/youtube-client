@@ -29,7 +29,7 @@
         align-items: flex-start;
         width: 90%;
 
-        .label-login,
+        .label-email,
         .label-password {
           font-size: 10px;
           line-height: 12px;
@@ -37,7 +37,7 @@
           color: #828282;
         }
 
-        .input-login,
+        .input-email,
         .input-password {
           width: 100%;
           background-color: #e0e0e0;
@@ -52,7 +52,6 @@
         justify-content: flex-end;
         align-items: center;
         width: 90%;
-        // padding: 20px 0px;
 
         .submit-button,
         .registration-button {

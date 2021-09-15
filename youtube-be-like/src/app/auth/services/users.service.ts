@@ -1,25 +1,47 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { UserInter } from '../../User';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { UserInter } from '../models/User';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  defaultUrl: string = 'http://localhost:5000';
 
-  private apiUrl: string = `${this.defaultUrl}/users`;
+  private currentUserSubject!: BehaviorSubject<UserInter>;
 
-  constructor(private http: HttpClient) { }
+  public currentUser!: Observable<UserInter>;
 
-  getUsers(): Observable<UserInter[]> {
-    return this.http.get<UserInter[]>(this.apiUrl);
+  constructor(private http: HttpClient, private router: Router) {
+    this.currentUserSubject = new BehaviorSubject<UserInter>(JSON.parse(localStorage.getItem('currentUser') as string));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  loginFilter(firstName: string, password: string): Observable<UserInter[]> {
-    let loginQueryUrl: string = `?first_name=${firstName}&password=${password}`;
-    let fullFilterUrl = this.apiUrl.concat(loginQueryUrl);
-    return this.http.get<UserInter[]>(fullFilterUrl);
+  public get currentUserValue(): UserInter {
+    return this.currentUserSubject ? this.currentUserSubject.value : this.currentUserSubject;
+  }
+
+  getUsers(): Observable<UserInter[]> {
+    return this.http.get<UserInter[]>(`${environment.apiUrl}/users`);
+  }
+
+  login(email: string, password: string): Observable<UserInter> {
+    return this.http.get<UserInter[]>(`${environment.apiUrl}/users?email=${email}&password=${password}`)
+      .pipe(map(users => {
+        if (users.length) {
+          localStorage.setItem('currentUser', JSON.stringify(users));
+          this.currentUserSubject.next(users[0]);
+        }
+        return users[0];
+      }));
+  }
+
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null as any);
   }
 }

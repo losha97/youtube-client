@@ -1,6 +1,6 @@
-<div class="container-detailed-information">
+<div class="container-detailed-information" *ngIf="card">
   <div class="container-previous-button">
-    <div class="previous-button">
+    <div class="previous-button" (click)="goBack()">
       <fa-icon class="icon-back" [icon]="faArrowLeft"></fa-icon>
     </div>
   </div>
@@ -10,37 +10,25 @@
 
       </div>
       <div class="youtube-video-number">
-        #21
+        # {{ card.id }}
       </div>
     </div>
     <div class="container-information">
       <div class="container-text-info">
         <div class="container-title-date">
-          <div class="title">Kuji podcast #21</div>
-          <div class="date">Thursday, december 20 2022</div>
+          <div class="title">{{ card.title }}</div>
+          <div class="date">{{ card.date }}</div>
         </div>
         <div class="container-description">
           <div class="description-header">Description:</div>
-          <div class="desciption-text">Lorem ipsum marsa lorem leksu bite, Lorem ipsum marsa lorem leksu bite, Lorem ipsum marsa lorem leksu bite, Lorem ipsum marsa lorem leksu bite, Lorem ipsum marsa lorem leksu bite, Lorem ipsum marsa lorem leksu bite, Lorem ipsum marsa lorem leksu bite</div>
+          <div class="desciption-text">{{ card.description }}</div>
         </div>
       </div>
       <div class="container-interaction-icons">
-        <div class="container-icons">
-          <!-- <app-views-count [card]="card">a</app-views-count> -->
-          a
-        </div>
-        <div class="container-icons">
-          <!-- <app-likes-count [card]="card">b</app-likes-count> -->
-          b
-        </div>
-        <div class="container-icons">
-          <!-- <app-dislikes-count [card]="card">c</app-dislikes-count> -->
-          c
-        </div>
-        <div class="container-icons">
-          <!-- <app-comments-count [card]="card">d</app-comments-count> -->
-          d
-        </div>
+        <div class="container-icons">{{ card.views }}</div>
+        <div class="container-icons">{{ card.likes }}</div>
+        <div class="container-icons">{{ card.dislikes }}</div>
+        <div class="container-icons">{{ card.clones }}</div>
       </div>
     </div>
   </div>

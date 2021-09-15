@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { AddCardComponent } from './shared/components/add-card/add-card.component';
@@ -31,6 +34,9 @@ import { MoreButtonComponent } from './youtube/components/search-result-block/se
 import { BorderBottomColorDirective } from './shared/directives/border-bottom-color.directive';
 import { FilterByInputPipe } from './shared/pipes/filter-by-input.pipe';
 import { DetailedInformationComponent } from './youtube/components/search-result-block/detailed-information/detailed-information.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtInterceptor } from './auth/helpers/jwt.interceptor';
+import { ErrorInterceptor } from './auth/helpers/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -67,8 +73,15 @@ import { DetailedInformationComponent } from './youtube/components/search-result
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
